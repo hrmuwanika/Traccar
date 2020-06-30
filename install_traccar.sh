@@ -44,7 +44,7 @@ ufw allow 5055/tcp
 ufw allow ssh
 
 #execute sql commands with the user
-mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
+#mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
 echo "create database traccar" | mysql -u root -p
 
 cd /usr/src
