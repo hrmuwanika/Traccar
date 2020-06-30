@@ -10,6 +10,13 @@
 # Execute the script to install Odoo:
 # ./install_traccar.sh
 ################################################################################
+# Set the website name
+WEBSITE_NAME="example.com"
+# Set to "True" to install certbot and have ssl enabled, "False" to use http
+ENABLE_SSL="True"
+# Provide Email to register ssl certificate
+ADMIN_EMAIL="odoo@example.com"
+##
 
 #--------------------------------------------------
 # Update Server
@@ -82,12 +89,10 @@ sudo systemctl start traccar.service
 # Install Nginx if needed
 #--------------------------------------------------
 echo -e "\n======== Installing nginx ============="
-if [ $INSTALL_NGINX = "True" ]; then
-  echo -e "\n---- Installing and setting up Nginx ----"
   sudo apt install -y nginx
   sudo systemctl enable nginx
   
-cat <<EOF > ~/traccar
+cat <<EOF > /etc/nginx/sites-available/traccar/etc/nginx/sites-available/traccar
 #traccar server
 upstream traccar_server {
     server 127.0.0.1:8082;
@@ -99,14 +104,14 @@ upstream traccar_client {
 server {
     listen 80;
     listen [::]:80;
-    server_name $WEBSITE_NAME;
+    server_name example.com;
    
     # Proxy settings
     proxy_read_timeout 720s;
     proxy_connect_timeout 720s;
     proxy_send_timeout 720s;
    
-    # Add Headers for odoo proxy mode
+    # Add Headers for traccar proxy mode
     proxy_set_header X-Forwarded-Host \$host;
     proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto \$scheme;
@@ -131,7 +136,7 @@ server {
                 proxy_cache_valid 200 90m;
                 proxy_buffering on;
                 expires 864000;
-                proxy_pass http://odoo;
+                proxy_pass http://traccar_server;
     }
    
     # Gzip Compression
@@ -140,15 +145,10 @@ server {
 }
 EOF
 
-  sudo mv ~/odoo /etc/nginx/sites-available/
   sudo ln -s /etc/nginx/sites-available/traccar /etc/nginx/sites-enabled/traccar
   sudo rm /etc/nginx/sites-enabled/default
   sudo systemctl reload nginx
-  sudo su root -c "printf 'proxy_mode = True\n' >> /etc/${OE_CONFIG}.conf"
-  echo "Done! The Nginx server is up and running. Configuration can be found at /etc/nginx/sites-available/traccar"
-else
-  echo "\n===== Nginx isn't installed due to choice of the user! ========"
-fi
+  
 
 #--------------------------------------------------
 # Enable ssl with certbot
