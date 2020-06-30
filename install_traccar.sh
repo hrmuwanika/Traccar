@@ -34,7 +34,7 @@ sudo apt autoremove -y
 echo -e "\n============== Install dependences ======================="
 sudo apt install -y unzip default-jre
 sudo apt install -y mysql-server
-sudo systemctl enable mysql.service
+#sudo systemctl enable mysql.service
 
 ufw enable
 ufw allow http
@@ -44,7 +44,7 @@ ufw allow 5055/tcp
 ufw allow ssh
 
 #execute sql commands with the user
-#mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
+mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
 echo "create database traccar" | mysql -u root -p
 
 cd /usr/src
