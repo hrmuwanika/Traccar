@@ -53,38 +53,7 @@ unzip traccar-linux-*.zip
 
 sudo ./traccar.run
 
-rm /opt/traccar/conf/traccar.xml
-cat <<EOF > /opt/traccar/conf/traccar.xml
-
-<?xml version='1.0' encoding='UTF-8'?>
-
-<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
-
-<properties>
-
-    <entry key='config.default'>./conf/default.xml</entry>
-
-    <!--
-
-    This is the main configuration file. All your configuration parameters should be placed in this file.
-
-    Default configuration parameters are located in the "default.xml" file. You should not modify it to avoid issues
-    with upgrading to a new version. Parameters in the main config file override values in the default file. Do not
-    remove "config.default" parameter from this file unless you know what you are doing.
-
-    For list of available parameters see following page: https://www.traccar.org/configuration-file/
-
-    -->
-
-  <!-- DataBase MariaDB  -->
-  <entry key='database.driver'>com.mysql.cj.jdbc.Driver</entry>
-  <entry key='database.url'>jdbc:mysql://localhost:3306/traccar?allowMultiQueries=true&amp;autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8&amp;sessionVariables=sql_mode=''</entry>
-  <entry key='database.user'>traccar_admin</entry>
-  <entry key='database.password'>abc1234!</entry>
-  <entry key='server.timeout'>120</entry>
-			
-</properties>
-EOF
+sudo vim /opt/traccar/conf/traccar.xml
 
 sudo systemctl enable traccar.service
 sudo systemctl start traccar.service
