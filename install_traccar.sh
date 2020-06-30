@@ -17,7 +17,7 @@ WEBSITE_NAME="example.com"
 # Set to "True" to install certbot and have ssl enabled, "False" to use http
 ENABLE_SSL="True"
 # Provide Email to register ssl certificate
-ADMIN_EMAIL="odoo@example.com"
+ADMIN_EMAIL="admin@example.com"
 ##
 
 #--------------------------------------------------
@@ -91,10 +91,12 @@ sudo systemctl start traccar.service
 # Install Nginx if needed
 #--------------------------------------------------
 echo -e "\n======== Installing nginx ============="
-  sudo apt install -y nginx
+if [ $INSTALL_NGINX = "True" ]; then
+  echo -e "\n---- Installing and setting up Nginx ----"
+  sudo apt install nginx -y
   sudo systemctl enable nginx
   
-cat <<EOF > /etc/nginx/sites-available/traccar/etc/nginx/sites-available/traccar
+cat <<EOF > /etc/nginx/sites-available/traccar
 #traccar server
 upstream traccar_server {
     server 127.0.0.1:8082;
@@ -106,7 +108,7 @@ upstream traccar_client {
 server {
     listen 80;
     listen [::]:80;
-    server_name example.com;
+    server_name $WEBSITE_NAME;
    
     # Proxy settings
     proxy_read_timeout 720s;
@@ -150,7 +152,9 @@ EOF
   sudo ln -s /etc/nginx/sites-available/traccar /etc/nginx/sites-enabled/traccar
   sudo rm /etc/nginx/sites-enabled/default
   sudo systemctl reload nginx
-  
+  else
+  echo "\n===== Nginx isn't installed due to choice of the user! ========"
+fi
 
 #--------------------------------------------------
 # Enable ssl with certbot
