@@ -34,7 +34,6 @@ sudo apt autoremove -y
 echo -e "\n============== Install dependences ======================="
 sudo apt install -y unzip default-jre
 sudo apt-get install mysql-server
-mysql_secure_installation
 sudo systemctl enable mysql.service
 
 ufw enable
@@ -45,8 +44,7 @@ ufw allow 5055/tcp
 ufw allow ssh
 
 #execute sql commands with the user
-PASS=`pwgen -s 40 1`
-mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY '$PASS'; FLUSH PRIVILEGES;"
+mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
 echo "create database traccar" | mysql -u root -p
 
 cd /usr/src
@@ -68,7 +66,7 @@ cat <<EOF > /opt/traccar/conf/traccar.xml
   <entry key='database.driver'>com.mysql.cj.jdbc.Driver</entry>
   <entry key='database.url'>jdbc:mysql://localhost:3306/traccar?allowMultiQueries=true&amp;autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8&amp;sessionVariables=sql_mode=''</entry>
   <entry key='database.user'>traccar_admin</entry>
-  <entry key='database.password'>$PASS</entry>
+  <entry key='database.password'>abc1234!</entry>
   <entry key='server.timeout'>120</entry>
 	
   <!-- Mail Service - Amazon SES -->
