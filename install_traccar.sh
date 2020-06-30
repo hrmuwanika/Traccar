@@ -33,7 +33,7 @@ sudo apt autoremove -y
 #--------------------------------------------------
 echo -e "\n============== Install dependences ======================="
 sudo apt install -y unzip default-jre
-sudo apt-get install mysql-server
+sudo apt install -y mysql-server
 sudo systemctl enable mysql.service
 
 ufw enable
