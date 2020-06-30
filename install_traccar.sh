@@ -10,6 +10,8 @@
 # Execute the script to install Odoo:
 # ./install_traccar.sh
 ################################################################################
+# Set this to True if you want to install Nginx!
+INSTALL_NGINX="True"
 # Set the website name
 WEBSITE_NAME="example.com"
 # Set to "True" to install certbot and have ssl enabled, "False" to use http
