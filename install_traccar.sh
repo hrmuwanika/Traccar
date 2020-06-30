@@ -57,10 +57,24 @@ rm /opt/traccar/conf/traccar.xml
 cat <<EOF > /opt/traccar/conf/traccar.xml
 
 <?xml version='1.0' encoding='UTF-8'?>
+
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="config.default">./conf/default.xml</entry>
+
+    <entry key='config.default'>./conf/default.xml</entry>
+
+    <!--
+
+    This is the main configuration file. All your configuration parameters should be placed in this file.
+
+    Default configuration parameters are located in the "default.xml" file. You should not modify it to avoid issues
+    with upgrading to a new version. Parameters in the main config file override values in the default file. Do not
+    remove "config.default" parameter from this file unless you know what you are doing.
+
+    For list of available parameters see following page: https://www.traccar.org/configuration-file/
+
+    -->
 
   <!-- DataBase MariaDB  -->
   <entry key='database.driver'>com.mysql.cj.jdbc.Driver</entry>
@@ -68,17 +82,7 @@ cat <<EOF > /opt/traccar/conf/traccar.xml
   <entry key='database.user'>traccar_admin</entry>
   <entry key='database.password'>abc1234!</entry>
   <entry key='server.timeout'>120</entry>
-	
-  <!-- Mail Service - Amazon SES -->
-  <entry key='mail.smtp.host'>email-smtp.us-east-1.amazonaws.com</entry>
-  <entry key='mail.smtp.port'>25</entry>
-  <entry key='mail.smtp.starttls.enable'>true</entry>
-  <entry key='mail.smtp.ssl.enable'>false</entry>
-  <entry key='mail.smtp.from'>mail@domain.com</entry>
-  <entry key='mail.smtp.auth'>true</entry>
-  <entry key='mail.smtp.username'>[AccessKeyID]</entry>
-  <entry key='mail.smtp.password'>[SecretAccessKey]</entry>
-		
+			
 </properties>
 EOF
 
@@ -91,7 +95,7 @@ sudo systemctl start traccar.service
 echo -e "\n======== Installing nginx ============="
 if [ $INSTALL_NGINX = "True" ]; then
   echo -e "\n---- Installing and setting up Nginx ----"
-  sudo apt install nginx -y
+  sudo apt install -y nginx
   sudo systemctl enable nginx
   
 cat <<EOF > /etc/nginx/sites-available/traccar
