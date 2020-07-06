@@ -44,6 +44,7 @@ ufw allow 5055/tcp
 ufw allow ssh
 
 #execute sql commands with the user
+mysql_secure_installation
 mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
 echo "create database traccar" | mysql -u root -p
 
@@ -145,8 +146,8 @@ fi
 
 echo "\n========================================================================="
 echo "Done! The traccar server is up and running. Specifications:"
-echo "Start Odoo service: sudo systemctl start traccar.service"
-echo "Stop Odoo service: sudo systemctl stop traccar.service"
-echo "Restart Odoo service: sudo systemctl restart traccar.service"
+echo "Start traccar service: sudo systemctl start traccar.service"
+echo "Stop traccar service: sudo systemctl stop traccar.service"
+echo "Restart traccar service: sudo systemctl restart traccar.service"
 echo "\n========================================================================="
 
