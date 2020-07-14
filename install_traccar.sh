@@ -57,7 +57,7 @@ mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'loca
 echo "create database traccar" | mysql -u root -p
 
 cd /usr/src
-wget https://github.com/traccar/traccar/releases/download/v4.8/traccar-linux-64-4.8.zip
+wget https://github.com/traccar/traccar/releases/download/v4.9/traccar-linux-64-4.9.zip
 unzip traccar-linux-*.zip
 
 sudo ./traccar.run
