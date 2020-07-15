@@ -44,8 +44,12 @@ ufw allow ssh
 
 #execute sql commands with the user
 mysql_secure_installation
-mysql -u root -p --execute="GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!'; FLUSH PRIVILEGES;"
-echo "create database traccar" | mysql -u root -p
+
+mysql -u root -p<<MYSQL_SCRIPT
+CREATE DATABASE traccar;
+GRANT ALL PRIVILEGES on *.* to 'traccar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc1234!';
+FLUSH PRIVILEGES;
+MYSQL_SCRIPT
 
 cd /usr/src
 wget https://github.com/traccar/traccar/releases/download/v4.9/traccar-linux-64-4.9.zip
