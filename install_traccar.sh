@@ -62,7 +62,9 @@ unzip traccar-linux-*.zip
 
 sudo ./traccar.run
 
-sudo vim /opt/traccar/conf/traccar.xml
+cd /usr/src
+sudo wget https://raw.githubusercontent.com/hrmuwanika/Traccar/master/traccar.xml 
+sudo cp traccar.xml /opt/traccar/conf/traccar.xml
 
 sudo systemctl enable traccar.service
 sudo systemctl start traccar.service
