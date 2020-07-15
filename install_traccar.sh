@@ -7,7 +7,7 @@
 # sudo vim install_traccar.sh
 # Place this content in it and then make the file executable:
 # sudo chmod +x install_traccar.sh
-# Execute the script to install Odoo:
+# Execute the script to install Traccar:
 # ./install_traccar.sh
 ################################################################################
 
@@ -33,7 +33,7 @@ sudo apt autoremove -y
 echo -e "\n============== Install dependences ======================="
 sudo apt install -y unzip default-jre
 sudo apt install -y mysql-server
-#sudo systemctl enable mysql.service
+sudo systemctl enable mysql.service
 
 ufw enable
 ufw allow http
