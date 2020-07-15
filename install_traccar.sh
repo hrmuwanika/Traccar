@@ -1,6 +1,6 @@
 #!/bin/bash
 ################################################################################
-# Script for installing Traccar GPS Tracking software on Ubuntu 18.04 LTS 
+# Script for installing Traccar GPS Tracking server on Ubuntu 18.04 LTS 
 # Author: Henry Robert Muwanika
 #-------------------------------------------------------------------------------
 # Make a new file:
@@ -59,11 +59,5 @@ sudo cp traccar.xml /opt/traccar/conf/traccar.xml
 
 sudo systemctl enable traccar.service
 sudo systemctl start traccar.service
-
-echo "\n========================================================================="
-echo "Done! The traccar server is up and running. Specifications:"
-echo "Start traccar service: sudo systemctl start traccar.service"
-echo "Stop traccar service: sudo systemctl stop traccar.service"
-echo "Restart traccar service: sudo systemctl restart traccar.service"
-echo "\n========================================================================="
+sudo systemctl status traccar.service
 
