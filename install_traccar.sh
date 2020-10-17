@@ -31,9 +31,9 @@ sudo apt autoremove -y
 # Install dependences
 #--------------------------------------------------
 echo -e "\n============== Install dependences ======================="
-sudo apt install -y unzip default-jre
-sudo apt install -y mysql-server
+sudo apt install unzip mysql-server -y
 sudo systemctl enable mysql.service
+sudo systemctl start mysql.service
 
 ufw enable
 ufw allow http
@@ -64,4 +64,3 @@ sudo cp traccar.xml /opt/traccar/conf/traccar.xml
 sudo systemctl enable traccar.service
 sudo systemctl start traccar.service
 sudo systemctl status traccar.service
-
