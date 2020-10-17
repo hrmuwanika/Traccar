@@ -31,6 +31,7 @@ sudo apt autoremove -y
 # Install dependences
 #--------------------------------------------------
 echo -e "\n============== Install dependences ======================="
+sudo apt install default-jre -y
 sudo apt install unzip mysql-server -y
 sudo systemctl enable mysql.service
 sudo systemctl start mysql.service
