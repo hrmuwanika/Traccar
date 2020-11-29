@@ -52,7 +52,7 @@ FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
 cd /usr/src
-wget https://github.com/traccar/traccar/releases/download/v4.10/traccar-linux-64-4.10.zip
+wget https://github.com/traccar/traccar/releases/download/v4.11/traccar-linux-64-4.11.zip
 unzip traccar-linux-*.zip
 
 sudo ./traccar.run
