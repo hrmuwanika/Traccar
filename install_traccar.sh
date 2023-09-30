@@ -1,6 +1,6 @@
 #!/bin/bash
 ################################################################################
-# Script for installing Traccar GPS Tracking server on Ubuntu 18.04 LTS 
+# Script for installing Traccar GPS Tracking server on Ubuntu 20.04 LTS 
 # Author: Henry Robert Muwanika
 #-------------------------------------------------------------------------------
 # Make a new file:
@@ -52,7 +52,7 @@ FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
 cd /usr/src
-wget https://github.com/traccar/traccar/releases/download/v5.3/traccar-linux-64-5.3.zip
+wget https://github.com/traccar/traccar/releases/download/v5.3/traccar-linux-64-5.9.zip
 unzip traccar-linux-*.zip
 
 sudo ./traccar.run
