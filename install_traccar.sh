@@ -1,6 +1,6 @@
 #!/bin/bash
 ################################################################################
-# Script for installing Traccar GPS Tracking server on Ubuntu 20.04 LTS 
+# Script for installing Traccar GPS Tracking server on Ubuntu 22.04 LTS 
 # Author: Henry Robert Muwanika
 #-------------------------------------------------------------------------------
 # Make a new file:
